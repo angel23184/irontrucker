@@ -1,0 +1,12 @@
+
+#game-board-div{
+    display: flex; 
+    background-image: url("images/bg.jpg"); 
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+
+}
+#myCanvas{
+  border : 1px solid black;
+}
