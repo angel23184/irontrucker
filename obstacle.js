@@ -8,7 +8,7 @@ function Obstacle(game) {
     ]
     this.image.src = this.imgPath[Math.floor(Math.random()*this.imgPath.length)]
     this.dx = 1;
-    this.y = 350;
+    this.y = 400;
     this.x =  this.game.canvas.width;
   }
   

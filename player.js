@@ -12,12 +12,15 @@ function Player(game) {
     this.up = false;
     this.down = false;
     this.fast = false;
+    this.vyClawRetorn = 1;
     this.setListeners();
   }
   
   var TOP_KEY = 38;
   var SPACE = 32;
+  var RIGHT = 39;
   var DOWN = 40;
+  var LEFT = 37;
   
   Player.prototype.draw = function() {
     this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
@@ -31,6 +34,12 @@ function Player(game) {
       if (event.keyCode === DOWN) {
         this.down = true;
       }
+      if (event.keyCode === RIGHT) {
+        this.x +=10;
+      }
+      if (event.keyCode === LEFT) {
+        this.x -=10;
+      }
     }.bind(this);
   };
 
@@ -42,7 +51,10 @@ function Player(game) {
       }else if(this.down === true){
           this.y += this.vy;
       }else if(this.up === true){
-          this.y -= this.vy;
+          this.y -= this.vyClawRetorn;
+      }else if(this.y < this.game.canvas.height){
+        //   this.y = 20;
+        //   this.x +=3;
       }
 
 
