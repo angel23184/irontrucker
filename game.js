@@ -7,6 +7,7 @@ function Game(canvadId) {
     this.framesCounter = 0;
     this.obstacles = [];
     this.score =0;
+    this.delete = false;
   }
   
   Game.prototype.start = function() {
@@ -16,7 +17,7 @@ function Game(canvadId) {
       this.moveAll();
   
       this.framesCounter++;
-      if(this.framesCounter %220 ===0){
+      if(this.framesCounter % 220 ===0){
         this.obstacles.push(new Obstacle(this));
       }
   
@@ -24,20 +25,29 @@ function Game(canvadId) {
       if (this.framesCounter > 1000) {
         this.framesCounter = 0;
       }
-
+      //cuando hay colision seleccionamos el primer elemento del array y posteriromente lo eliminamos.
       var arrayObstacles = this.isCollision();
       if(arrayObstacles.length > 0){
-        arrayObstacles[0].isFollow = true;
-
+        arrayObstacles[0].isFollow = true; 
+        if(this.delete){
+          this.obstacles.splice(this.obstacles.findIndex(function(e){return e==arrayObstacles[0]}),1)
+          this.arrayObstacles = [];
+          this.delete = false;
+          this.score++;
+        }
       }
-
-
-    }.bind(this), 1000 / this.fps);
+     }.bind(this), 1000 / this.fps);
   };
   
   Game.prototype.clear = function() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }; 
+
+  Game.prototype.clearObstacles = function() {
+  this.obstacles = this.obstacles.filter(function(obstacle) {
+    return obstacle.x >= 0;
+  });
+};
 
   Game.prototype.isCollision = function() {
     // colisiones genéricas 
@@ -72,6 +82,6 @@ function Game(canvadId) {
   Game.prototype.drawScore = function() {
     this.ctx.font = "30px sans-serif";
     this.ctx.fillStyle = "white";
-    this.ctx.fillText(Math.floor(this.score), 50, 50);
+    this.ctx.fillText(Math.floor(this.score), 50, 75);
   }
   

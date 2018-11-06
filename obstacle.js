@@ -11,24 +11,20 @@ function Obstacle(game) {
     this.y = 400;
     this.x =  this.game.canvas.width;
     this.width = 150;
-    this.isFollow =false;
+    this.isFollow = false;
+    this.isInTheBox = false;
   }
   
   Obstacle.prototype.draw = function() {
-
     this.ctx.drawImage(this.image, this.x, this.y, this.width, 150);
-    
-
   };
   
   Obstacle.prototype.move = function() {
     if(this.isFollow){
-      this.x = this.game.player.x +10;
-      this.y = this.game.player.y;
-
+      this.x = this.game.player.x+10;
+      this.y = this.game.player.y+50;
     }else{
       this.x -= this.dx ;
     }
-
   };
 

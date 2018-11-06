@@ -50,12 +50,10 @@ function Player(game) {
           this.x += 10;
         }
         }
-      
     }.bind(this);
   };
 
   Player.prototype.move = function(){
-
 
       if(this.fast === true){
           this.y += this.fastvy; 
@@ -81,6 +79,8 @@ function Player(game) {
     }
     if(this.x +this.w >= this.game.canvas.width){
       this.moveX = false;
+      this.x -=5;
+      this.game.delete=true;
     }
 
   }
