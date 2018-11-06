@@ -34,12 +34,17 @@ function Player(game) {
       if (event.keyCode === DOWN) {
         this.down = true;
       }
-      if (event.keyCode === RIGHT) {
-        this.x +=10;
-      }
       if (event.keyCode === LEFT) {
-        this.x -=10;
+        if (this.x>=10){
+          this.x -= 10;
+        }
       }
+      if (event.keyCode === RIGHT) {
+        if(this.x<=900){
+          this.x += 10;
+        }
+        }
+      
     }.bind(this);
   };
 
