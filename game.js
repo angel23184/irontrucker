@@ -8,6 +8,7 @@ function Game(canvadId) {
     this.obstacles = [];
     this.score =0;
     this.delete = false;
+    
   }
   
   Game.prototype.start = function() {
@@ -84,4 +85,9 @@ function Game(canvadId) {
     this.ctx.fillStyle = "white";
     this.ctx.fillText(Math.floor(this.score), 50, 75);
   }
+
+  Game.prototype.drawBox = function() {
+    this.game.ctx.drawImage(this.img, 850, 500 , 100, 100);
+  }
+
   
