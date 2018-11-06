@@ -70,10 +70,7 @@ function Player(game) {
           this.fast = false;
           this.up = true;
       }
-      // if(this.y === this.yMinHeight  && this.x<this.xMaxCanvasWidth){
-    //   //   this.up = false;
-    //   //   this.x += this.vClawRetorn;
-    // }
+
     if(this.y<= this.yMinHeight){
       this.up = false;
       this.moveX = true;

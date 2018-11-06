@@ -6,14 +6,7 @@ function Game(canvadId) {
     this.fps = 60;
     this.framesCounter = 0;
     this.obstacles = [];
-    // this.obstacle1 = new Obstacle(this);
-    // this.obstacle2 = new Obstacle(this);
-    // this.obstacle3 = new Obstacle(this);
-    // this.obstacle4 = new Obstacle(this);
-    // this.obstacles.push(this.obstacle1);
-    // this.obstacles.push(this.obstacle2);
-    // this.obstacles.push(this.obstacle3);
-    // this.obstacles.push(this.obstacle4);
+    this.score =0;
   }
   
   Game.prototype.start = function() {
@@ -31,12 +24,32 @@ function Game(canvadId) {
       if (this.framesCounter > 1000) {
         this.framesCounter = 0;
       }
+
+      var arrayObstacles = this.isCollision();
+      if(arrayObstacles.length > 0){
+        arrayObstacles[0].isFollow = true;
+
+      }
+
+
     }.bind(this), 1000 / this.fps);
   };
   
   Game.prototype.clear = function() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }; 
+
+  Game.prototype.isCollision = function() {
+    // colisiones genéricas 
+    // (p.x + p.w > o.x && o.x + o.w > p.x && p.y + p.h > o.y && o.y + o.h > p.y )
+    return this.obstacles.filter(function(obstacle) {
+      return (
+        ((this.player.x + this.player.w) >= obstacle.x &&
+         this.player.x < (obstacle.x + obstacle.width) &&
+         this.player.y + (this.player.h - 20) >= obstacle.y)
+      );
+    }.bind(this));
+  };
   
   Game.prototype.draw = function() {
     this.background.draw();
@@ -53,5 +66,12 @@ function Game(canvadId) {
       obstacle.move();
     })
     this.player.move();
+    this.drawScore();
   };
+
+  Game.prototype.drawScore = function() {
+    this.ctx.font = "30px sans-serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(Math.floor(this.score), 50, 50);
+  }
   
