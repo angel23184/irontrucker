@@ -1,4 +1,5 @@
 function Player(game) {
+  //todo: consider using the config
     this.game = game;
     this.y0 = 20;
     this.y = this.y0;
@@ -13,7 +14,7 @@ function Player(game) {
     this.w = 175;
     this.h = 175;
     this.vy = 0.5;
-    this.fastvy = 2;
+    this.fastvy = 4;
     this.up = false;
     this.down = false;
     this.fast = false;
@@ -21,6 +22,12 @@ function Player(game) {
     this.vClawRetorn = 2;
     this.setListeners();
   }
+
+  //todo: consider using a KeyboardConfig object
+  // var KeyboardConfig = {
+  //   LEFT: 37
+  // }
+
   
   var TOP_KEY = 38;
   var SPACE = 32;
@@ -33,6 +40,8 @@ function Player(game) {
   };
   
   Player.prototype.setListeners = function() {
+
+    //todo: consider using a KeyboardManager class
     document.onkeydown = function(event) {
       if (event.keyCode === SPACE) {
         this.fast =true;
@@ -42,19 +51,19 @@ function Player(game) {
       }
       if (event.keyCode === LEFT) {
         if (this.x>=this.xMinCanvasWidth){
-          this.x -= 10;
+          this.x -= 15;
         }
       }
       if (event.keyCode === RIGHT) {
         if(this.x<=this.xMaxCanvasWidth){
-          this.x += 10;
+          this.x += 15;
         }
         }
     }.bind(this);
   };
 
   Player.prototype.move = function(){
-
+    //todo: consider refactor this code. difficult to understand
       if(this.fast === true){
           this.y += this.fastvy; 
       }else if(this.down === true){

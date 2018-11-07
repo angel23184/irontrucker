@@ -1,3 +1,9 @@
+//todo: consider adding a config object
+// var Configs = {
+//   dxObs: 1.05,
+//   count: 90
+// }
+
 function Game(canvadId) {
     this.canvas = document.getElementById(canvadId);
     this.ctx = this.canvas.getContext("2d");
@@ -9,10 +15,11 @@ function Game(canvadId) {
     this.score =0;
     this.delete = false;
     this.dxObs = 1.05;
-    this.count = 60;
+    this.count = 90;
    
   }
   
+  //todo: remember, it could be nice to add an Stage class to separate business logic from painting and gameplay
   Game.prototype.start = function() {
     this.interval = setInterval(function() {
       this.clear();
@@ -49,7 +56,7 @@ function Game(canvadId) {
       }
       if(this.count ===0){
         this.gameOver();
-        if(confirm("GAME OVER. Play again?")) {
+        if(confirm(`Has salvado ${this.score} juguetes de Andy ¿Intentarlo otra vez?`)) {
           this.reset();
           this.start();
         }else{
@@ -79,6 +86,7 @@ Game.prototype.gameOver = function() {
   this.stop();
 };
 
+//todo: consider adding a CollisionTester class
   Game.prototype.isCollision = function() {
     // colisiones genéricas 
     // (p.x + p.w > o.x && o.x + o.w > p.x && p.y + p.h > o.y && o.y + o.h > p.y )
@@ -109,17 +117,22 @@ Game.prototype.gameOver = function() {
     this.drawScore();
   };
 
+
+  //todo: consider adding a ScoreManager class
   Game.prototype.drawScore = function() {
     this.ctx.font = "50px sans-serif";
     this.ctx.fillStyle = "white";
     this.ctx.fillText(Math.floor(this.score), 50, 75);
   }
 
+  //todo: consider adding a TimePainterManager class
   Game.prototype.drawTime = function() {
     this.ctx.font = "30px sans-serif";
     this.ctx.fillStyle = "white";
     this.ctx.fillText(`${this.count} seg.`, 50, 120);
   }
+
+  //todo: please remember using an external config file
   Game.prototype.reset = function() {
     this.background = new Background(this);
     this.player = new Player(this);
@@ -127,6 +140,7 @@ Game.prototype.gameOver = function() {
     this.obstacles = [];
     this.score = 0;
     this.count = 60;
+    this.dxObs =1.05;
   };
 
   

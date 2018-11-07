@@ -2,6 +2,7 @@ function Obstacle(game, dx) {
     this.game = game;
     this.ctx= this.game.ctx;
     this.image = new Image();
+    //todo: consider using the snippet I provided you
     this.imgPath = ['images/Alien.png','images/Buzz.png',
     'images/Woman.png','images/woody.png','images/pig.png','images/chiefwoody.png',
     'images/dinosaurious.png','images/potatoe.png', 'images/baby.png', 'images/barbie.png', 
