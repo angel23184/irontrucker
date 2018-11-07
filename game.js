@@ -9,7 +9,8 @@ function Game(canvadId) {
     this.score =0;
     this.delete = false;
     this.dxObs = 1.05;
-    
+    this.count = 60;
+   
   }
   
   Game.prototype.start = function() {
@@ -17,6 +18,8 @@ function Game(canvadId) {
       this.clear();
       this.draw();
       this.moveAll();
+      this.drawTime();
+
   
       this.framesCounter++;
       if(this.framesCounter % 220 ===0){
@@ -42,6 +45,11 @@ function Game(canvadId) {
         }
       }
      }.bind(this), 1000 / this.fps);
+
+     this.timer = setInterval(function() {
+      this.count--;
+      if(this.count == 0) clearInterval(this.timer);
+      }.bind(this), 1000);
   };
   
   Game.prototype.clear = function() {
@@ -90,8 +98,10 @@ function Game(canvadId) {
     this.ctx.fillText(Math.floor(this.score), 50, 75);
   }
 
-  Game.prototype.drawBox = function() {
-    this.game.ctx.drawImage(this.img, 850, 500 , 100, 100);
+  Game.prototype.drawTime = function() {
+    this.ctx.font = "50px sans-serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(this.count, 50, 120);
   }
 
   
