@@ -1,13 +1,17 @@
-function Obstacle(game) {
+function Obstacle(game, dx) {
     this.game = game;
     this.ctx= this.game.ctx;
     this.image = new Image();
     this.imgPath = ['images/Alien.png','images/Buzz.png',
     'images/Woman.png','images/woody.png','images/pig.png','images/chiefwoody.png',
-    'images/dinosaurious.png','images/potatoe.png'
+    'images/dinosaurious.png','images/potatoe.png', 'images/baby.png', 'images/barbie.png', 
+    'images/girl.png','images/perdigon.png','images/mspotatoe.png','images/littlebaby.png', 'images/Alien.png','images/Buzz.png',
+    'images/Woman.png','images/woody.png','images/pig.png','images/chiefwoody.png',
+    'images/dinosaurious.png','images/potatoe.png', 'images/baby.png', 'images/barbie.png', 
+    'images/girl.png','images/perdigon.png','images/mspotatoe.png','images/littlebaby.png'
     ]
     this.image.src = this.imgPath[Math.floor(Math.random()*this.imgPath.length)]
-    this.dx = 1;
+    this.dx = dx;
     this.y = 400;
     this.x =  this.game.canvas.width;
     this.width = 150;
