@@ -77,11 +77,6 @@ Game.prototype.stop = function() {
 
 Game.prototype.gameOver = function() {
   this.stop();
-  
-  if(confirm("GAME OVER. Play again?")) {
-    this.reset();
-    this.start();
-  }
 };
 
   Game.prototype.isCollision = function() {
@@ -121,9 +116,9 @@ Game.prototype.gameOver = function() {
   }
 
   Game.prototype.drawTime = function() {
-    this.ctx.font = "50px sans-serif";
+    this.ctx.font = "30px sans-serif";
     this.ctx.fillStyle = "white";
-    this.ctx.fillText(this.count, 50, 120);
+    this.ctx.fillText(`${this.count} seg.`, 50, 120);
   }
   Game.prototype.reset = function() {
     this.background = new Background(this);
