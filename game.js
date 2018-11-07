@@ -16,7 +16,8 @@ function Game(canvadId) {
     this.delete = false;
     this.dxObs = 1.05;
     this.count = 90;
-   
+    this.image = new Image();
+    this.image.src = 'images/andystoys.png';
   }
   
   //todo: remember, it could be nice to add an Stage class to separate business logic from painting and gameplay
@@ -101,6 +102,7 @@ Game.prototype.gameOver = function() {
   
   Game.prototype.draw = function() {
     this.background.draw();
+    this.drawBox();
     this.obstacles.forEach(function(obstacle) {
       obstacle.draw();
       
@@ -141,6 +143,10 @@ Game.prototype.gameOver = function() {
     this.score = 0;
     this.count = 60;
     this.dxObs =1.05;
+  };
+
+  Game.prototype.drawBox = function() {
+    this.ctx.drawImage(this.image, 850, 100, 250,200);
   };
 
   
