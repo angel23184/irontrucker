@@ -20,7 +20,6 @@ function Game(canvadId) {
       this.moveAll();
       this.drawTime();
 
-  
       this.framesCounter++;
       if(this.framesCounter % 220 ===0){
         this.obstacles.push(new Obstacle(this, this.dxObs));
@@ -28,7 +27,11 @@ function Game(canvadId) {
       if(this.framesCounter % 1000 ===0){
         this.dxObs++;
       }
-  
+      if(this.framesCounter % 60 == 0){
+        this.count--;
+        if(this.count == 0)
+          this.gameOver();
+      }
       // controlamos que frameCounter no sea superior a 1000
       if (this.framesCounter > 1000) {
         this.framesCounter = 0;
@@ -44,12 +47,18 @@ function Game(canvadId) {
           this.score++;
         }
       }
+      if(this.count ===0){
+        this.gameOver();
+        if(confirm("GAME OVER. Play again?")) {
+          this.reset();
+          this.start();
+        }else{
+          this.reset();
+          this.start();
+        }
+      }
      }.bind(this), 1000 / this.fps);
 
-     this.timer = setInterval(function() {
-      this.count--;
-      if(this.count == 0) clearInterval(this.timer);
-      }.bind(this), 1000);
   };
   
   Game.prototype.clear = function() {
@@ -60,6 +69,19 @@ function Game(canvadId) {
   this.obstacles = this.obstacles.filter(function(obstacle) {
     return obstacle.x >= 0;
   });
+};
+
+Game.prototype.stop = function() {
+  clearInterval(this.interval);
+};
+
+Game.prototype.gameOver = function() {
+  this.stop();
+  
+  if(confirm("GAME OVER. Play again?")) {
+    this.reset();
+    this.start();
+  }
 };
 
   Game.prototype.isCollision = function() {
@@ -103,5 +125,13 @@ function Game(canvadId) {
     this.ctx.fillStyle = "white";
     this.ctx.fillText(this.count, 50, 120);
   }
+  Game.prototype.reset = function() {
+    this.background = new Background(this);
+    this.player = new Player(this);
+    this.framesCounter = 0;
+    this.obstacles = [];
+    this.score = 0;
+    this.count = 60;
+  };
 
   
