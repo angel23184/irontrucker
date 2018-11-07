@@ -10,7 +10,7 @@ function Player(game) {
     this.moveX = false;
     this.ctx= this.game.ctx;
     this.img = new Image();
-    this.img.src = 'images/claw.png';
+    this.img.src = 'images/reaclaw.png';
     this.w = 175;
     this.h = 175;
     this.vy = 0.5;
