@@ -33,7 +33,7 @@ function Game(canvadId) {
         this.obstacles.push(new Obstacle(this, this.dxObs));
       }
       if(this.framesCounter % 1000 ===0){
-        this.dxObs++;
+        this.dxObs+3;
       }
       if(this.framesCounter % 60 == 0){
         this.count--;
