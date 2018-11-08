@@ -12,10 +12,10 @@ function Game(canvadId) {
     this.fps = 60;
     this.framesCounter = 0;
     this.obstacles = [];
-    this.score =0;
+    this.score = 0;
     this.delete = false;
     this.dxObs = 1.05;
-    this.count = 90;
+    this.count = 60;
     this.image = new Image();
     this.image.src = 'images/andystoys.png';
   }
@@ -37,8 +37,8 @@ function Game(canvadId) {
       }
       if(this.framesCounter % 60 == 0){
         this.count--;
-        if(this.count == 0)
-          this.gameOver();
+        
+        
       }
       // controlamos que frameCounter no sea superior a 1000
       if (this.framesCounter > 1000) {
@@ -56,15 +56,17 @@ function Game(canvadId) {
         }
       }
       if(this.count ===0){
-        this.gameOver();
-        if(confirm(`Has salvado ${this.score} juguetes de Andy ¿Intentarlo otra vez?`)) {
-          this.reset();
-          this.start();
-        }else{
-          window.location.href = "endgame.html";
-          // this.reset();
-          // this.start();
-        }
+        clearInterval(this.interval);
+        // this.count = 5;
+          
+          if(confirm(`Has salvado ${this.score} juguetes de Andy ¿Intentarlo otra vez?`)) {
+            this.reset();
+            this.start();
+          }else{
+            window.location.href = "endgame.html";
+            // this.reset();
+            // this.start();
+          }
       }
      }.bind(this), 1000 / this.fps);
 
@@ -142,12 +144,13 @@ Game.prototype.gameOver = function() {
     this.framesCounter = 0;
     this.obstacles = [];
     this.score = 0;
-    this.count = this.count;
+    this.count = 60;
     this.dxObs =1.05;
   };
 
   Game.prototype.drawBox = function() {
     this.ctx.drawImage(this.image, 850, 100, 250,200);
   };
+  
 
   
