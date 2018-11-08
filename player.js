@@ -45,6 +45,8 @@ function Player(game) {
     document.onkeydown = function(event) {
       if (event.keyCode === SPACE) {
         this.fast =true;
+        var audio = new Audio("sounds/gancho.mp3");
+        audio.play();
       }
       if (event.keyCode === DOWN) {
         this.down = true;

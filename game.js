@@ -61,8 +61,9 @@ function Game(canvadId) {
           this.reset();
           this.start();
         }else{
-          this.reset();
-          this.start();
+          window.location.href = "endgame.html";
+          // this.reset();
+          // this.start();
         }
       }
      }.bind(this), 1000 / this.fps);
@@ -141,7 +142,7 @@ Game.prototype.gameOver = function() {
     this.framesCounter = 0;
     this.obstacles = [];
     this.score = 0;
-    this.count = 60;
+    this.count = this.count;
     this.dxObs =1.05;
   };
 

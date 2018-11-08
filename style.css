@@ -30,11 +30,38 @@
   background-color: #1883ba;
   border-radius: 6px;
   border: 2px solid #0016b0;
+  animation-name: cool;
+  animation-duration: 5s;
+  animation-timing-function: ease;  
 }
-.start-play:hover{
+.start-play-btn:hover{
   color: #1883ba;
-  background-color: #ffffff;
+  background-color: #FFC300  ;
 }
+
+
+@keyframes cool {
+10% {color: white;}
+20%{color: #DAF7A6;}
+30%{color: #F7D4E3;}
+40%{color: #B2D732;}
+50%{color: #581845;}
+60%{color: #F7E9D4;}
+70%{color: #C70039;}
+80%{color: #FCCB1A;}
+90%{color: #FE2712;}
+100%{color: white;}
+}
+
+#end-game-div{
+  display: flex; 
+  background-image: url("images/endGame.jpg"); 
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+  background-repeat: no-repeat;
+}
+
 
 
 
