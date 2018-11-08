@@ -14,7 +14,7 @@ function Game(canvadId) {
     this.obstacles = [];
     this.score = 0;
     this.delete = false;
-    this.dxObs = 1.05;
+    this.dxObs = 1.2;
     this.count = 60;
     this.image = new Image();
     this.image.src = 'images/andystoys.png';
@@ -29,11 +29,11 @@ function Game(canvadId) {
       this.drawTime();
 
       this.framesCounter++;
-      if(this.framesCounter % 220 ===0){
+      if(this.framesCounter % 200 ===0){
         this.obstacles.push(new Obstacle(this, this.dxObs));
       }
       if(this.framesCounter % 1000 ===0){
-        this.dxObs+3;
+        this.dxObs++;
       }
       if(this.framesCounter % 60 == 0){
         this.count--;
