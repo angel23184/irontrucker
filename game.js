@@ -15,7 +15,7 @@ function Game(canvadId) {
     this.score = 0;
     this.delete = false;
     this.dxObs = 1.2;
-    this.count = 60;
+    this.count = 30;
     this.image = new Image();
     this.image.src = 'images/andystoys.png';
   }
@@ -144,7 +144,7 @@ Game.prototype.gameOver = function() {
     this.framesCounter = 0;
     this.obstacles = [];
     this.score = 0;
-    this.count = 60;
+    this.count = 30;
     this.dxObs =1.05;
   };
 
