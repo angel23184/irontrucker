@@ -4,7 +4,7 @@ function Obstacle(game, dx) {
     this.image = new Image();
     //todo: consider using the snippet I provided you
     this.imgPath = ['images/Alien.png','images/Buzz.png',
-    'images/Woman.png','images/woody.png','images/pig.png','images/chiefwoody.png',
+    'images/Woman.png','images/woody.png','images/pig.png','images/dog.png','images/chiefwoody.png',
     'images/dinosaurious.png','images/potatoe.png', 'images/baby.png', 'images/barbie.png', 
     'images/girl.png','images/perdigon.png','images/mspotatoe.png','images/littlebaby.png', 'images/Alien.png','images/Buzz.png',
     'images/Woman.png','images/woody.png','images/pig.png','images/chiefwoody.png',
